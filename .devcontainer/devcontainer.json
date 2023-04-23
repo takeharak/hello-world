@@ -11,7 +11,8 @@
 
 	// Use a targeted named volume
 	"mounts": [
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gh/hosts.yml,target=/home/vscode/.config/gh/hosts.yml,type=bind,readonly"
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gh/hosts.yml,target=/home/vscode/.config/gh/hosts.yml,type=bind,readonly",
+		"source=hello-world-build,target=${containerWorkspaceFolder}/build,type=volume"
 	],
 
 	"remoteEnv": {
