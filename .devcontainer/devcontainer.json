@@ -1,0 +1,68 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "hello-world",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": { 
+			"REINSTALL_CMAKE_VERSION_FROM_SOURCE": "3.26.3"
+		}
+	},
+
+	// Use a targeted named volume
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gh/hosts.yml,target=/home/vscode/.config/gh/hosts.yml,type=bind,readonly"
+	],
+
+	"remoteEnv": {
+		"CC": "/usr/bin/clang",
+		"CXX": "/usr/bin/clang++",
+		"EDITOR": "code --wait"
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": ".devcontainer/postcreate.sh",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"eamodio.gitlens",
+				"editorconfig.editorconfig",
+				"medo64.render-crlf",
+				"ms-vscode.cmake-tools",
+				"ms-vscode.cpptools"
+			],
+			"settings": {
+				"editor.defaultFormatter": "EditorConfig.EditorConfig",
+				"editor.renderControlCharacters": true,
+				"editor.renderWhitespace": "all",
+				"extensions.ignoreRecommendations": true,
+				"terminal.integrated.cwd": "${containerWorkspaceFolder}",
+				"cmake.buildTask": true,
+				"cmake.configureOnOpen": true,
+				"code-eol.crlfCharacter": "↵",
+				"code-eol.decorateBeforeEol": true,
+				"code-eol.highlightExtraWhitespace": true,
+				"code-eol.highlightNonDefault": true,
+				"code-eol.newlineCharacter": "↓",
+				"code-eol.returnCharacter": "←",
+				"editorconfig.generateAuto": true,
+				"editorconfig.template": "default"
+			}
+		}
+	},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode"
+}
